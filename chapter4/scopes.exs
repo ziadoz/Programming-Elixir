@@ -28,3 +28,12 @@ result = with {:ok, file}     = File.open(Path.join([cwd(), "passwd"])),
         end
 
 IO.inspect result
+
+# Do Shortcut
+values = [1, 2, 3, 4, 5]
+
+mean = with count = Enum.count(values),
+            sum   = Enum.sum(values),
+       do: sum / count
+
+IO.puts mean
