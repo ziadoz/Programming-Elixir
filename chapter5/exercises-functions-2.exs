@@ -10,3 +10,10 @@ IO.puts fizzbuzz.(0, 0, 0)
 IO.puts fizzbuzz.(0, 1, 0)
 IO.puts fizzbuzz.(1, 0, 0)
 IO.puts fizzbuzz.(1, 1, 1)
+
+# FizzBuzz Remainder
+fizzbuzz_rem = fn n ->
+    fizzbuzz.(rem(n, 3), rem(n, 5), n)
+end
+
+IO.puts Enum.join(Enum.map(10..16, fizzbuzz_rem), " ")
