@@ -39,3 +39,31 @@ list = [1, 3, 5, 7, 9]
 IO.inspect Enum.map(list, fn elem -> elem * 2 end)
 IO.inspect Enum.map(list, fn elem -> elem * elem end)
 IO.inspect Enum.map list, fn elem -> elem > 6 end
+
+# & Notation Functions
+add_one = &(&1 + 1)
+IO.puts add_one.(44)
+
+square = &(&1 * &1)
+IO.puts square.(8)
+
+# Optimised to Elixir's IO.puts
+speak = &(IO.puts(&1))
+IO.inspect speak
+speak.("Hello")
+
+# Optimised to Elixir's Float.round
+rnd = &(Float.round(&1, &2))
+IO.inspect rnd
+
+# Not optimised because the parameters are swapped/wrong way around
+rnd = &(Float.round(&2, &1))
+IO.inspect rnd
+
+# Optimised down to Erlang abs() method
+abs = &(abs(&1))
+IO.inspect abs
+
+# Tuple / List Operator Functions
+divrem = &{ div(&1, &2), rem(&1, &2) }
+IO.inspect divrem.(13, 5)
