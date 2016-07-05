@@ -67,3 +67,21 @@ IO.inspect abs
 # Tuple / List Operator Functions
 divrem = &{ div(&1, &2), rem(&1, &2) }
 IO.inspect divrem.(13, 5)
+
+# Function Arity (number of parameters)
+l = &length/1
+IO.inspect l
+
+len = &Enum.count/1
+IO.inspect len
+IO.puts len.([1, 2, 3])
+
+m = &Kernel.min/2 # Alias for an Erlang function
+IO.inspect m
+IO.puts m.(99, 98)
+
+# More & Notation Functions
+list = [1, 2, 3, 4]
+IO.inspect Enum.map list, &(&1 + 1)
+IO.inspect Enum.map list, &(&1 + &1)
+IO.inspect Enum.map list, &(&1 < 3)
