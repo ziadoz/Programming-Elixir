@@ -8,23 +8,23 @@ defmodule Chop do
     end
 
     # Guess is correct
-    def try_guess(actual, actual, _) do
+    defp try_guess(actual, actual, _) do
         IO.puts "Yes, it's #{actual}"
         actual
     end
 
     # Guess is too small
-    def try_guess(actual, guess, _low..high) when guess < actual do
+    defp try_guess(actual, guess, _low..high) when guess < actual do
         guess(actual, guess + 1..high)
     end
 
     # Guess is too big
-    def try_guess(actual, guess, low.._high) when guess > actual do
+    defp try_guess(actual, guess, low.._high) when guess > actual do
         guess(actual, low..guess - 1)
     end
 
     # Display the current guess
-    def ask(guess) do
+    defp ask(guess) do
         IO.puts "Is it #{guess}"
         guess
     end
