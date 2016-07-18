@@ -98,3 +98,7 @@ IO.puts "#{AnotherAtttributeModule.first} #{AnotherAtttributeModule.second}"
 IO.puts is_atom IO
 IO.puts to_string IO
 IO.puts :"Elixir.IO" === IO
+
+# Erlang Modules
+# Erlang modules are accessed by using an atom (e.g. io.format becomes :io.format) in Elixir.
+:io.format("The number is ~3.1f~n", [5.678])
