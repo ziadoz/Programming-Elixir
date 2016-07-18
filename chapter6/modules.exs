@@ -23,7 +23,7 @@ end
 
 Foo.Bar.dot_nested_module_func
 
-# Imports
+# Module Imports
 defmodule ImportModule do
     def func1 do
         List.flatten [1, [2, 3], 4]
@@ -40,7 +40,7 @@ end
 IO.inspect ImportModule.func1
 IO.inspect ImportModule.func2
 
-# Aliases
+# Module Aliases
 defmodule My.Other.Module.Parser do
     def parse(source) do
         source
@@ -70,3 +70,31 @@ defmodule AliasModule do
 end
 
 IO.inspect AliasModule.compile_and_go([:a, :b, :c, :d])
+
+# Module Attributes
+# Use for configuration and metadata only.
+defmodule AtttributeModule do
+    @author "Dave Thomas"      # Attribute Module. Top level only.
+
+    def get_author do
+        @author
+    end
+end
+
+IO.puts AtttributeModule.get_author
+
+defmodule AnotherAtttributeModule do
+    @attr "one"               # Attribute Module. Value in function is what is defined at that point in time.
+    def first, do: @attr
+
+    @attr "two"
+    def second, do: @attr
+end
+
+IO.puts "#{AnotherAtttributeModule.first} #{AnotherAtttributeModule.second}"
+
+# Module Names
+# Module names are internally converted to atoms.
+IO.puts is_atom IO
+IO.puts to_string IO
+IO.puts :"Elixir.IO" === IO
